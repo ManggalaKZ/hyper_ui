@@ -33,7 +33,7 @@ class DashboardView extends StatefulWidget {
                     padding: const EdgeInsets.all(15.0),
                     child: Container(
                       child: Text(
-                        "Welcome back " + controller.name,
+                        "Welcome Back " + controller.name,
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 17.0,
@@ -283,8 +283,7 @@ class DashboardView extends StatefulWidget {
             SizedBox(
               height: 10,
             ),
-            ExpenseItem(),
-            ExpenseItem(),
+            Expanded(child: ExpenseListView()),
             ExpenseItem(),
             SizedBox(
               height: 70,

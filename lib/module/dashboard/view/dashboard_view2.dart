@@ -1,4 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:d_chart/commons/data_model.dart';
+import 'package:d_chart/commons/decorator.dart';
+import 'package:d_chart/commons/enums.dart';
+import 'package:d_chart/commons/style.dart';
+import 'package:d_chart/ordinal/combo.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hyper_ui/core.dart';
@@ -40,6 +45,7 @@ class DashboardView2 extends StatefulWidget {
     final monthName = monthFormat.format(now);
     String monthnow = monthName;
     final chartData = ChartDataModel.chartData;
+
     controller.view = this;
     ScrollController _scrollController = ScrollController();
     return Scaffold(
@@ -63,7 +69,7 @@ class DashboardView2 extends StatefulWidget {
                     padding: const EdgeInsets.all(15.0),
                     child: Container(
                       child: Text(
-                        "Welcome back " + controller.name,
+                        "Welcome Back " + controller.name,
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 17.0,
@@ -115,7 +121,7 @@ class DashboardView2 extends StatefulWidget {
                                     return Container(
                                       alignment: Alignment.center,
                                       child: Text(
-                                        "RP$total" "000",
+                                        "Rp.$total",
                                         style: TextStyle(
                                           fontSize: 25.0,
                                           fontWeight: FontWeight.bold,
@@ -159,70 +165,76 @@ class DashboardView2 extends StatefulWidget {
                             controller: _scrollController,
                             itemBuilder: (context, index) {
                               final data = chartData[index];
-                              return Container(
-                                height: 100,
-                                width: 80,
-                                margin: EdgeInsets.symmetric(horizontal: 10.0),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        children: [
-                                          Container(
-                                            height: (data["data"]["primer"] +
-                                                    data["data"]["sekunder"] +
-                                                    data["data"]["tersier"] +
-                                                    data["data"]
-                                                        ["pendidikan"]) *
-                                                data["data"]["primer"] /
-                                                40,
-                                            width: 20,
-                                            color: Colors.blue,
-                                          ),
-                                          Container(
-                                            height: (data["data"]["primer"] +
-                                                    data["data"]["sekunder"] +
-                                                    data["data"]["tersier"] +
-                                                    data["data"]
-                                                        ["pendidikan"]) *
-                                                data["data"]["sekunder"] /
-                                                40,
-                                            width: 20,
-                                            color: Colors.yellow,
-                                          ),
-                                          Container(
-                                            height: (data["data"]["primer"] +
-                                                    data["data"]["sekunder"] +
-                                                    data["data"]["tersier"] +
-                                                    data["data"]
-                                                        ["pendidikan"]) *
-                                                data["data"]["tersier"] /
-                                                40,
-                                            width: 20,
-                                            color: Colors.red,
-                                          ),
-                                          Container(
-                                            height: (data["data"]["primer"] +
-                                                    data["data"]["sekunder"] +
-                                                    data["data"]["tersier"] +
-                                                    data["data"]
-                                                        ["pendidikan"]) *
-                                                data["data"]["pendidikan"] /
-                                                40,
-                                            width: 20,
-                                            color: Colors.green,
-                                          ),
-                                        ]),
-                                    SizedBox(height: 15.0),
-                                    Container(
-                                        height: 25,
-                                        child: Text(
-                                          data["month"],
-                                          style: TextStyle(fontSize: 15),
-                                        )),
-                                  ],
+                              return InkWell(
+                                onTap: () {
+                                  openChart(context);
+                                },
+                                child: Container(
+                                  height: 100,
+                                  width: 80,
+                                  margin:
+                                      EdgeInsets.symmetric(horizontal: 10.0),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.end,
+                                          children: [
+                                            Container(
+                                              height: (data["data"]["primer"] +
+                                                      data["data"]["sekunder"] +
+                                                      data["data"]["tersier"] +
+                                                      data["data"]
+                                                          ["pendidikan"]) *
+                                                  data["data"]["primer"] /
+                                                  40000000,
+                                              width: 20,
+                                              color: Colors.blue,
+                                            ),
+                                            Container(
+                                              height: (data["data"]["primer"] +
+                                                      data["data"]["sekunder"] +
+                                                      data["data"]["tersier"] +
+                                                      data["data"]
+                                                          ["pendidikan"]) *
+                                                  data["data"]["sekunder"] /
+                                                  40000000,
+                                              width: 20,
+                                              color: Colors.yellow,
+                                            ),
+                                            Container(
+                                              height: (data["data"]["primer"] +
+                                                      data["data"]["sekunder"] +
+                                                      data["data"]["tersier"] +
+                                                      data["data"]
+                                                          ["pendidikan"]) *
+                                                  data["data"]["tersier"] /
+                                                  40000000,
+                                              width: 20,
+                                              color: Colors.red,
+                                            ),
+                                            Container(
+                                              height: (data["data"]["primer"] +
+                                                      data["data"]["sekunder"] +
+                                                      data["data"]["tersier"] +
+                                                      data["data"]
+                                                          ["pendidikan"]) *
+                                                  data["data"]["pendidikan"] /
+                                                  40000000,
+                                              width: 20,
+                                              color: Colors.green,
+                                            ),
+                                          ]),
+                                      SizedBox(height: 15.0),
+                                      Container(
+                                          height: 25,
+                                          child: Text(
+                                            data["month"],
+                                            style: TextStyle(fontSize: 15),
+                                          )),
+                                    ],
+                                  ),
                                 ),
                               );
                             },
@@ -328,3 +340,111 @@ class DashboardView2 extends StatefulWidget {
   @override
   State<DashboardView2> createState() => DashboardController();
 }
+
+void openChart(BuildContext context) {
+  final now = DateTime.now();
+  final monthFormat = DateFormat.MMMM();
+  final chartData = ChartDataModel.chartData;
+  final currentMonth = monthFormat.format(now);
+  String monthNow = currentMonth;
+  Map<String, dynamic>? monthData;
+  for (final data in chartData) {
+    if (data["month"] == "$monthNow") {
+      monthData = data;
+      break;
+    }
+  }
+  showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          contentPadding: EdgeInsets.all(20),
+          content: SingleChildScrollView(
+              child: AspectRatio(
+            aspectRatio: 16 / 9,
+            child: DChartComboO(
+                barLabelDecorator: BarLabelDecorator(
+                    barLabelPosition: BarLabelPosition.outside),
+                barLabelValue: (group, ordinalData, index) {
+                  return 'Rp.${ordinalData.measure}';
+                },
+                outsideBarLabelStyle: (group, ordinalData, index) {
+                  return const LabelStyle(
+                    fontSize: 8,
+                  );
+                },
+                groupList: [
+                  OrdinalGroup(id: '1', chartType: ChartType.bar, data: [
+                    OrdinalData(
+                        domain: 'Primer',
+                        measure: monthData!["data"]["primer"]),
+                    OrdinalData(
+                        domain: 'Sekunder',
+                        measure: monthData["data"]["sekunder"]),
+                    OrdinalData(
+                        domain: 'Tersier',
+                        measure: monthData["data"]["tersier"]),
+                    OrdinalData(
+                        domain: 'Pendidikan',
+                        measure: monthData["data"]["pendidikan"]),
+                  ]),
+                ]),
+          )),
+        );
+      });
+}
+
+// void openDialog(BuildContext context) {
+//   showDialog(
+//       context: context,
+//       builder: (BuildContext context) {
+//         return AlertDialog(
+//           content: SingleChildScrollView(
+//             child: Column(
+//               crossAxisAlignment: CrossAxisAlignment.start,
+//               mainAxisAlignment: MainAxisAlignment.start,
+//               children: [
+//                 Padding(
+//                   padding: const EdgeInsets.only(bottom: 5),
+//                   child: Text(
+//                     "Penyalahgunaan KIP-K 1",
+//                     style: TextStyle(color: Colors.black),
+//                   ),
+//                 ),
+//                 Padding(
+//                   padding: const EdgeInsets.only(bottom: 20),
+//                   child: Text(
+//                     "Are you sure to delete this report?",
+//                     style: TextStyle(color: Colors.grey),
+//                   ),
+//                 ),
+//                 Row(
+//                   mainAxisAlignment: MainAxisAlignment.end,
+//                   children: [
+//                     ElevatedButton(
+//                       style: ElevatedButton.styleFrom(
+//                         backgroundColor: Colors.grey,
+//                         elevation: 10,
+//                       ),
+//                       onPressed: () {},
+//                       child: Text("Cancel"),
+//                     ),
+//                     SizedBox(
+//                       width: 10,
+//                     ),
+//                     ElevatedButton(
+//                       style: ElevatedButton.styleFrom(
+//                         backgroundColor: Colors.red,
+//                         elevation: 10,
+//                       ),
+//                       onPressed: () {},
+//                       child: Text("Delete"),
+//                     ),
+//                   ],
+//                 ),
+//               ],
+//             ),
+//           ),
+//         );
+//       });
+// }

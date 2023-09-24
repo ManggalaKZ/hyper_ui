@@ -23,7 +23,7 @@ class AddExpenseController extends State<AddExpensePageView> {
   String category = "";
   String itemName = "";
   String date = "";
-  num amount = 0;
+  num? amount = 0;
   String photo = "";
 
   DoAddExpense() async {
