@@ -16,6 +16,8 @@ export 'package:hyper_ui/module/dashboard/controller/dashboard_controller.dart';
 export 'package:hyper_ui/module/dashboard/view/chart_data_model.dart';
 export 'package:hyper_ui/module/dashboard/view/dashboard_view.dart';
 export 'package:hyper_ui/module/dashboard/view/dashboard_view2.dart';
+export 'package:hyper_ui/module/data_diri/controller/data_diri_controller.dart';
+export 'package:hyper_ui/module/data_diri/view/data_diri_view.dart';
 export 'package:hyper_ui/module/debug/controller/debug_controller.dart';
 export 'package:hyper_ui/module/debug/view/debug_view.dart';
 export 'package:hyper_ui/module/expense_detail/controller/expense_detail_controller.dart';
