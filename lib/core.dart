@@ -12,6 +12,8 @@ export 'package:hyper_ui/module/add_expense/view/add_expense_view.dart';
 export 'package:hyper_ui/module/akun/item/akunDataModel.dart';
 export 'package:hyper_ui/module/button_navigator/button_navigation_bar.dart';
 export 'package:hyper_ui/module/button_navigator/coba.dart';
+export 'package:hyper_ui/module/char_view/controller/char_view_controller.dart';
+export 'package:hyper_ui/module/char_view/view/char_view_view.dart';
 export 'package:hyper_ui/module/dashboard/controller/dashboard_controller.dart';
 export 'package:hyper_ui/module/dashboard/view/chart_data_model.dart';
 export 'package:hyper_ui/module/dashboard/view/dashboard_view.dart';

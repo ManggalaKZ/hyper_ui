@@ -50,6 +50,7 @@ class ExpenseListView extends StatefulWidget {
                     String date = document["datebaru"];
                     String name = document["name"];
                     String category = document["category"];
+                    num amount = document["amount"];
                     String itemName = document["itemName"];
                     String photo = document["photo"];
 
@@ -72,12 +73,19 @@ class ExpenseListView extends StatefulWidget {
                           title: Text(name),
                           subtitle: Text(date),
                           trailing: Padding(
-                            padding: const EdgeInsets.all(10.0),
+                            padding: const EdgeInsets.all(5.0),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
                                 Text(
                                   category,
+                                  style: TextStyle(
+                                    fontSize: 15.0,
+                                  ),
+                                ),
+                                Text(
+                                  "Rp." + amount.toString(),
                                   style: TextStyle(
                                     fontSize: 15.0,
                                   ),
