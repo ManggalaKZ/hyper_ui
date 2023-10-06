@@ -74,6 +74,29 @@ class _ReportPageState extends State<ReportPage> {
                         }).toList();
                       }
 
+                      if (reportDocuments.isEmpty) {
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Center(
+                              child: Padding(
+                                  padding: EdgeInsets.all(10),
+                                  child: Icon(
+                                    Icons.warning_amber_rounded,
+                                    color: Color(0xFF9B51E0),
+                                    size: 70,
+                                  )),
+                            ),
+                            Text(
+                              "Data masih kosong!",
+                              style: TextStyle(
+                                fontSize: 18.0,
+                              ),
+                            ),
+                          ],
+                        );
+                      }
+
                       return ListView.builder(
                         itemCount: reportDocuments.length,
                         itemBuilder: (context, index) {
@@ -144,6 +167,9 @@ class _ReportPageState extends State<ReportPage> {
                     }
                   },
                 ),
+              ),
+              SizedBox(
+                height: 60,
               )
             ],
           )),
@@ -172,8 +198,6 @@ class _ReportPageState extends State<ReportPage> {
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color(0xFF9B51E0),
-
-                        // minimumSize: const Size(120, 60),
                         elevation: 10,
                       ),
                       child: const Text(
