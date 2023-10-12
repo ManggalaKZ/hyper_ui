@@ -37,152 +37,136 @@ class _FloatMainNavigationViewState extends State<FloatMainNavigationView> {
             height: 71.0,
             child: Padding(
               padding: const EdgeInsets.only(
-                left: 20.0,
-                right: 20.0,
+                left: 35.0,
+                right: 35.0,
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Expanded(
-                    child: InkWell(
-                      onTap: () {
-                        selectedIndex = 0;
-                        setState(() {});
-                      },
-                      child: Expanded(
-                        child: Column(children: <Widget>[
-                          Expanded(
-                            child: ImageIcon(
-                              AssetImage(
-                                "assets/aset/Overview.png",
-                              ),
-                              color: selectedIndex == 0
-                                  ? Color(0xFF9B51E0)
-                                  : Colors.blueGrey[600],
-                              size: 40.0,
-                            ),
+                  InkWell(
+                    onTap: () {
+                      selectedIndex = 0;
+                      setState(() {});
+                    },
+                    child: Column(children: <Widget>[
+                      Expanded(
+                        child: ImageIcon(
+                          AssetImage(
+                            "assets/aset/Overview.png",
                           ),
-                          Text(
-                            "Overview",
-                            style: TextStyle(
-                              color: selectedIndex == 0
-                                  ? Color(0xFF9B51E0)
-                                  : Colors.blueGrey[600],
-                              fontSize: 15.0,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          )
-                        ]),
+                          color: selectedIndex == 0
+                              ? Color(0xFF9B51E0)
+                              : Colors.blueGrey[600],
+                          size: 40.0,
+                        ),
                       ),
-                    ),
+                      Text(
+                        "Overview",
+                        style: TextStyle(
+                          color: selectedIndex == 0
+                              ? Color(0xFF9B51E0)
+                              : Colors.blueGrey[600],
+                          fontSize: 15.0,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      )
+                    ]),
                   ),
-                  Expanded(
-                    child: InkWell(
-                      onTap: () {
-                        selectedIndex = 1;
-                        setState(() {});
-                      },
-                      child: Expanded(
-                        child: Column(children: <Widget>[
-                          Expanded(
-                            child: ImageIcon(
-                              AssetImage(
-                                "assets/aset/Payment.png",
-                              ),
-                              color: selectedIndex == 1
-                                  ? Color(0xFF9B51E0)
-                                  : Colors.blueGrey[600],
-                              size: 40.0,
-                            ),
+                  InkWell(
+                    onTap: () {
+                      selectedIndex = 1;
+                      setState(() {});
+                    },
+                    child: Column(children: <Widget>[
+                      Expanded(
+                        child: ImageIcon(
+                          AssetImage(
+                            "assets/aset/Payment.png",
                           ),
-                          Text(
-                            "Expense",
-                            style: TextStyle(
-                              color: selectedIndex == 1
-                                  ? Color(0xFF9B51E0)
-                                  : Colors.blueGrey[600],
-                              fontSize: 15.0,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          )
-                        ]),
+                          color: selectedIndex == 1
+                              ? Color(0xFF9B51E0)
+                              : Colors.blueGrey[600],
+                          size: 40.0,
+                        ),
                       ),
-                    ),
+                      Text(
+                        "Expense",
+                        style: TextStyle(
+                          color: selectedIndex == 1
+                              ? Color(0xFF9B51E0)
+                              : Colors.blueGrey[600],
+                          fontSize: 15.0,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      )
+                    ]),
                   ),
-                  Expanded(
-                    child: InkWell(
-                      onTap: () {
-                        selectedIndex = 2;
-                        setState(() {});
-                      },
-                      child: Expanded(
-                        child: Column(children: <Widget>[
-                          Expanded(
-                            child: ImageIcon(
-                              AssetImage(
-                                "assets/aset/Transaction.png",
-                              ),
-                              color: selectedIndex == 2
-                                  ? Color(0xFF9B51E0)
-                                  : Colors.blueGrey[600],
-                              size: 40.0,
-                            ),
+                  InkWell(
+                    onTap: () {
+                      selectedIndex = 2;
+                      setState(() {});
+                    },
+                    child: Column(children: <Widget>[
+                      Expanded(
+                        child: ImageIcon(
+                          AssetImage(
+                            "assets/aset/Transaction.png",
                           ),
-                          Text(
-                            "Report",
-                            style: TextStyle(
-                              color: selectedIndex == 2
-                                  ? Color(0xFF9B51E0)
-                                  : Colors.blueGrey[600],
-                              fontSize: 15.0,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          )
-                        ]),
+                          color: selectedIndex == 2
+                              ? Color(0xFF9B51E0)
+                              : Colors.blueGrey[600],
+                          size: 40.0,
+                        ),
                       ),
-                    ),
+                      Text(
+                        "Report",
+                        style: TextStyle(
+                          color: selectedIndex == 2
+                              ? Color(0xFF9B51E0)
+                              : Colors.blueGrey[600],
+                          fontSize: 15.0,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      )
+                    ]),
                   ),
-                  Expanded(
-                    child: InkWell(
-                      onTap: () {
-                        selectedIndex = 3;
-                        setState(() {});
-                      },
-                      child: Expanded(
-                        child: Column(children: <Widget>[
-                          Expanded(
-                            child: ImageIcon(
-                              AssetImage(
-                                "assets/aset/User.png",
-                              ),
-                              color: selectedIndex == 3
-                                  ? Color(0xFF9B51E0)
-                                  : Colors.blueGrey[600],
-                              size: 40.0,
-                            ),
+                  InkWell(
+                    onTap: () {
+                      selectedIndex = 3;
+                      setState(() {});
+                    },
+                    child: Column(children: <Widget>[
+                      Expanded(
+                        child: ImageIcon(
+                          AssetImage(
+                            "assets/aset/User.png",
                           ),
-                          Text(
-                            "Profile",
-                            style: TextStyle(
-                              color: selectedIndex == 3
-                                  ? Color(0xFF9B51E0)
-                                  : Colors.blueGrey[600],
-                              fontSize: 15.0,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          )
-                        ]),
+                          color: selectedIndex == 3
+                              ? Color(0xFF9B51E0)
+                              : Colors.blueGrey[600],
+                          size: 40.0,
+                        ),
                       ),
-                    ),
+                      Text(
+                        "Profile",
+                        style: TextStyle(
+                          color: selectedIndex == 3
+                              ? Color(0xFF9B51E0)
+                              : Colors.blueGrey[600],
+                          fontSize: 15.0,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      )
+                    ]),
                   ),
                 ],
               ),
