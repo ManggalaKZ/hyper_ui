@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hyper_ui/core.dart';
+
 import '../view/edit_report_view.dart';
 
 class EditReportController extends State<EditReportView> {
@@ -29,6 +30,11 @@ class EditReportController extends State<EditReportView> {
   String photo = "";
   String description = "";
 
+  bool cek = false;
+  bool cekEdit() {
+    return cek;
+  }
+
   DoEditReport() async {
     if (reportName.isEmpty ||
         name.isEmpty ||
@@ -53,7 +59,9 @@ class EditReportController extends State<EditReportView> {
           );
         },
       );
+      cek = false;
     } else {
+      cek = true;
       await FirebaseFirestore.instance.collection("report").add({
         "reportName": reportName,
         "name": name,

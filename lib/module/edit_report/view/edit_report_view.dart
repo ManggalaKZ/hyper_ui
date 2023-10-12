@@ -174,7 +174,11 @@ class EditReportView extends StatefulWidget {
                       ),
                       onPressed: () {
                         controller.DoEditReport();
-                        deleteReport(documentId);
+                        bool isTrue = controller.cekEdit();
+                        print(isTrue);
+                        if (isTrue) {
+                          deleteReport(documentId);
+                        }
                       },
                       child: const Text("Edit Report"),
                     ),
