@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:d_chart/commons/data_model.dart';
 import 'package:d_chart/commons/decorator.dart';
@@ -13,7 +15,6 @@ class YourWidget extends StatefulWidget {
 }
 
 class _YourWidgetState extends State<YourWidget> {
-  final _firestore = FirebaseFirestore.instance;
   List<Map<String, dynamic>> chartData = [];
 
   @override
@@ -130,136 +131,145 @@ class _YourWidgetState extends State<YourWidget> {
       ),
       child: Builder(
         builder: (context) {
-          return Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 10),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  color: Theme.of(context).cardColor,
-                  padding: EdgeInsets.all(12.0),
-                  child: ListView.builder(
-                    itemCount: chartData.length,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      final data = chartData[index];
-                      final totalData = data["data"]["primer"] +
-                          data["data"]["sekunder"] +
-                          data["data"]["tersier"] +
-                          data["data"]["pendidikan"];
+          return Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                color: Theme.of(context).cardColor,
+                padding: EdgeInsets.all(12.0),
+                child: ListView.builder(
+                  itemCount: chartData.length,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    final data = chartData[index];
+                    final totalData = data["data"]["primer"] +
+                        data["data"]["sekunder"] +
+                        data["data"]["tersier"] +
+                        data["data"]["pendidikan"];
+                    double maxHeight = 190.0;
 
-                      return InkWell(
-                        onTap: () {
-                          showDetail(data);
-                        },
-                        child: Container(
-                          height: 100,
-                          width: 80,
-                          margin: EdgeInsets.symmetric(horizontal: 10.0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              if (totalData > 0)
-                                Stack(
-                                  // Grafik
-                                  alignment: Alignment.centerLeft,
-                                  children: [
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.end,
-                                      children: [
-                                        Container(
-                                          height: (data["data"]["primer"] +
-                                                  data["data"]["sekunder"] +
-                                                  data["data"]["tersier"] +
-                                                  data["data"]["pendidikan"]) *
-                                              data["data"]["primer"] /
-                                              3000000000,
-                                          width: 20,
-                                          color: Colors.blue,
-                                        ),
-                                        Container(
-                                          height: (data["data"]["primer"] +
-                                                  data["data"]["sekunder"] +
-                                                  data["data"]["tersier"] +
-                                                  data["data"]["pendidikan"]) *
-                                              data["data"]["sekunder"] /
-                                              3000000000,
-                                          width: 20,
-                                          color: Colors.yellow,
-                                        ),
-                                        Container(
-                                          height: (data["data"]["primer"] +
-                                                  data["data"]["sekunder"] +
-                                                  data["data"]["tersier"] +
-                                                  data["data"]["pendidikan"]) *
-                                              data["data"]["tersier"] /
-                                              3000000000,
-                                          width: 20,
-                                          color: Colors.red,
-                                        ),
-                                        Container(
-                                          height: (data["data"]["primer"] +
-                                                  data["data"]["sekunder"] +
-                                                  data["data"]["tersier"] +
-                                                  data["data"]["pendidikan"]) *
-                                              data["data"]["pendidikan"] /
-                                              3000000000,
-                                          width: 20,
-                                          color: Colors.green,
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                )
-                              else if (totalData == 0)
-                                Stack(
-                                  // Grafik
-                                  alignment: Alignment.centerLeft,
-                                  children: [
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.end,
-                                      children: [
-                                        Container(
-                                          height: 100,
-                                          width: 20,
-                                          color: Colors.grey[300],
-                                        ),
-                                        Container(
-                                          height: 80,
-                                          width: 20,
-                                          color: Colors.grey[400],
-                                        ),
-                                        Container(
-                                          height: 90,
-                                          width: 20,
-                                          color: Colors.grey[350],
-                                        ),
-                                        Container(
-                                          height: 110,
-                                          width: 20,
-                                          color: Colors.grey[400],
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              SizedBox(height: 15.0),
-                              Container(
-                                height: 25,
-                                child: Text(
-                                  data["month"],
-                                  style: TextStyle(fontSize: 15),
-                                ),
+                    return InkWell(
+                      onTap: () {
+                        showDetail(data);
+                      },
+                      child: Container(
+                        height: 100,
+                        width: 80,
+                        margin: EdgeInsets.symmetric(horizontal: 10.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            if (totalData > 0)
+                              Stack(
+                                // Grafik
+                                alignment: Alignment.centerLeft,
+                                children: [
+                                  Row(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Container(
+                                        height: min(
+                                            (data["data"]["primer"] +
+                                                    data["data"]["sekunder"] +
+                                                    data["data"]["tersier"] +
+                                                    data["data"]
+                                                        ["pendidikan"]) *
+                                                data["data"]["primer"] /
+                                                12000000000,
+                                            maxHeight),
+                                        width: 20,
+                                        color: Colors.blue,
+                                      ),
+                                      Container(
+                                        height: min(
+                                            (data["data"]["primer"] +
+                                                    data["data"]["sekunder"] +
+                                                    data["data"]["tersier"] +
+                                                    data["data"]
+                                                        ["pendidikan"]) *
+                                                data["data"]["sekunder"] /
+                                                12000000000,
+                                            maxHeight),
+                                        width: 20,
+                                        color: Colors.yellow,
+                                      ),
+                                      Container(
+                                        height: min(
+                                            (data["data"]["primer"] +
+                                                    data["data"]["sekunder"] +
+                                                    data["data"]["tersier"] +
+                                                    data["data"]
+                                                        ["pendidikan"]) *
+                                                data["data"]["tersier"] /
+                                                12000000000,
+                                            maxHeight),
+                                        width: 20,
+                                        color: Colors.red,
+                                      ),
+                                      Container(
+                                        height: min(
+                                            (data["data"]["primer"] +
+                                                    data["data"]["sekunder"] +
+                                                    data["data"]["tersier"] +
+                                                    data["data"]
+                                                        ["pendidikan"]) *
+                                                data["data"]["pendidikan"] /
+                                                12000000000,
+                                            maxHeight),
+                                        width: 20,
+                                        color: Colors.green,
+                                      ),
+                                    ],
+                                  )
+                                ],
                               )
-                            ],
-                          ),
+                            else if (totalData == 0)
+                              Stack(
+                                // Grafik
+                                alignment: Alignment.centerLeft,
+                                children: [
+                                  Row(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      Container(
+                                        height: 100,
+                                        width: 20,
+                                        color: Colors.grey[300],
+                                      ),
+                                      Container(
+                                        height: 80,
+                                        width: 20,
+                                        color: Colors.grey[400],
+                                      ),
+                                      Container(
+                                        height: 90,
+                                        width: 20,
+                                        color: Colors.grey[350],
+                                      ),
+                                      Container(
+                                        height: 110,
+                                        width: 20,
+                                        color: Colors.grey[400],
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            SizedBox(height: 15.0),
+                            Container(
+                              height: 25,
+                              child: Text(
+                                data["month"],
+                                style: TextStyle(fontSize: 15),
+                              ),
+                            )
+                          ],
                         ),
-                      );
-                    },
-                  ),
+                      ),
+                    );
+                  },
                 ),
               ),
             ),

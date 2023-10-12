@@ -47,11 +47,13 @@ class DashboardView2 extends StatefulWidget {
         String month = doc['bulan'];
 
         if (month == currentMonth) {
-          categoryTotals.update(
-            month = category,
-            (value) => value + expenseAmount,
-            ifAbsent: () => expenseAmount,
-          );
+          // Memeriksa apakah kategori sudah ada dalam categoryTotals
+          if (month == currentMonth) {
+            categoryTotals[category] =
+                (categoryTotals[category] ?? 0) + expenseAmount;
+          } else {
+            categoryTotals[category] = expenseAmount;
+          }
         }
       });
 
@@ -61,19 +63,16 @@ class DashboardView2 extends StatefulWidget {
     }
   }
 
-  late Future<Map<String, int>> _categoryTotals = getTotalExpenseByCategory();
+  late final Future<Map<String, int>> _categoryTotals =
+      getTotalExpenseByCategory();
 
   Widget build(context, DashboardController controller) {
-    User? currentUser = FirebaseAuth.instance.currentUser;
-    String? currentUserId = currentUser!.displayName;
-
     final now = DateTime.now();
     final monthFormat = DateFormat.MMMM();
     final monthName = monthFormat.format(now);
     String monthnow = monthName;
 
     controller.view = this;
-    ScrollController _scrollController = ScrollController();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -413,10 +412,6 @@ class DashboardView2 extends StatefulWidget {
                                       child: ListView.builder(
                                         itemCount: 1,
                                         itemBuilder: (context, index) {
-                                          final category = snapshot.data?.keys
-                                              .elementAt(index);
-                                          final total =
-                                              snapshot.data?[category];
                                           // Membuat variabel total
                                           int overallTotal = 0;
                                           // Mengakses data dari snapshot

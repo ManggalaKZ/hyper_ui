@@ -5,7 +5,6 @@ class AddExpensePageView extends StatefulWidget {
   const AddExpensePageView({Key? key}) : super(key: key);
 
   Widget build(context, AddExpenseController controller) {
-    String? selectedCategory;
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(

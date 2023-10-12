@@ -24,6 +24,7 @@ class DataDiriController extends State<DataDiriView> {
   String kip_number = "";
   String nama = "";
   String major = "";
+  String address = "";
   String display = "";
   String photo = "";
   String confirm_password = "";
@@ -34,6 +35,7 @@ class DataDiriController extends State<DataDiriView> {
         university.isEmpty ||
         photo.isEmpty ||
         major.isEmpty ||
+        address.isEmpty ||
         nama.isEmpty) {
       showDialog(
         context: context,
@@ -67,6 +69,7 @@ class DataDiriController extends State<DataDiriView> {
           'kip_number': kip_number,
           'university': university,
           'photo': photo,
+          'address': address,
           'major': major,
           'email': FirebaseAuth.instance.currentUser!.email,
           'nama': nama,

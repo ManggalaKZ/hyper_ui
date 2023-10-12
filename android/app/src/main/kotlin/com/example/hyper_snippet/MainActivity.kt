@@ -1,4 +1,4 @@
-package com.example.bijak_kipk
+package com.manggala.bijakkipk
 
 import io.flutter.embedding.android.FlutterActivity
 

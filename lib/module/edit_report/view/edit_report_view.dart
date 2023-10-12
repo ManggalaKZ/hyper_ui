@@ -34,10 +34,6 @@ class EditReportView extends StatefulWidget {
           var year = data['year'] ?? 'null';
           var description = data['description'] ?? '-';
           var photo = data['photo'] ?? 'null';
-          var date = data['date'] ?? 'null';
-          String formattedDate = date != null
-              ? DateFormat('dd-MMMM-yyyy').format(date.toDate())
-              : "";
           return Scaffold(
               appBar: AppBar(
                 leading: IconButton(

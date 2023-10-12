@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "366679648636-esjv101gd9h8adr26inol1ovqpc3ugtr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bijak_kipk",
+            "certificate_hash": "cec6a7236b723fed74270b9f043d752727e5bf5f"
+          }
+        },
+        {
           "client_id": "366679648636-9bd9nct4g4mbdnngf39atattl6q8bp3a.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -57,6 +65,50 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "366679648636-9bd9nct4g4mbdnngf39atattl6q8bp3a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwHq89z_IBPNemNNhZZkiwZxq7gMP-t3E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "366679648636-9bd9nct4g4mbdnngf39atattl6q8bp3a.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "366679648636-v8su8ktgqfs9haoad9ke4s34i44giksd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.hyperSnippet"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:366679648636:android:9c34eb34165a3e08635cf9",
+        "android_client_info": {
+          "package_name": "com.manggala.bijakkipk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "366679648636-gv7q49f161d475glrtnis7gu9qpi492i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.manggala.bijakkipk",
+            "certificate_hash": "6b90ad0b5cda3b860d94a3de76d2e60a6b919e7b"
+          }
+        },
         {
           "client_id": "366679648636-9bd9nct4g4mbdnngf39atattl6q8bp3a.apps.googleusercontent.com",
           "client_type": 3

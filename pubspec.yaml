@@ -30,6 +30,7 @@ dependencies:
   cloud_firestore: ^4.9.1
   google_sign_in: ^6.1.5
   d_chart: ^2.6.2
+  flutter_screenutil: ^5.9.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

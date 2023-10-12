@@ -63,6 +63,16 @@ class DataDiriView extends StatefulWidget {
             SizedBox(
               height: 15,
             ),
+            QTextField(
+              label: "Address",
+              validator: Validator.required,
+              onChanged: (value) {
+                controller.address = (value);
+              },
+            ),
+            SizedBox(
+              height: 15,
+            ),
             Text(
               "Upload Foto Anda",
               style:

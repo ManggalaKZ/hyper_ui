@@ -25,25 +25,6 @@ class ProfileView extends StatefulWidget {
       }
     }
 
-    Future<List<DocumentSnapshot>> getExpense() async {
-      User? currentUser = FirebaseAuth.instance.currentUser;
-
-      if (currentUser != null) {
-        String currentUserId = currentUser.uid;
-
-        QuerySnapshot expenseSnapshot = await FirebaseFirestore.instance
-            .collection("expense")
-            .where("user.uid", isEqualTo: currentUserId)
-            .where("category", isEqualTo: "primer")
-            .where("bulan", isEqualTo: "September")
-            .get();
-
-        return expenseSnapshot.docs;
-      } else {
-        return [];
-      }
-    }
-
     return Scaffold(
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
@@ -215,6 +196,7 @@ class ProfileView extends StatefulWidget {
                     String university = document["university"];
                     String major = document["major"];
                     String photo = document["photo"];
+                    String address = document["address"];
 
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -328,6 +310,23 @@ class ProfileView extends StatefulWidget {
                                       ),
                                       Text(
                                         major,
+                                        style: TextStyle(fontSize: 17),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        "Address",
+                                        style: TextStyle(fontSize: 17),
+                                      ),
+                                      Text(
+                                        address,
                                         style: TextStyle(fontSize: 17),
                                       ),
                                     ],
