@@ -277,7 +277,6 @@ class _ReportPageState extends State<ReportPage> {
   }
 
   void deleteReport(String documentId) {
-    // Tambahkan logika penghapusan data berdasarkan documentId
     FirebaseFirestore.instance.collection("report").doc(documentId).delete();
   }
 

@@ -69,7 +69,7 @@ class EditReportView extends StatefulWidget {
                   QTextField(
                     label: "Report Name",
                     validator: Validator.required,
-                    helper: reportName,
+                    value: reportName,
                     hint: "Type report name",
                     onChanged: (value) {
                       controller.reportName = (value);
@@ -81,7 +81,7 @@ class EditReportView extends StatefulWidget {
                   QTextField(
                     label: "Refering Name",
                     validator: Validator.required,
-                    helper: name,
+                    value: name,
                     hint: "Type Refering name",
                     onChanged: (value) {
                       controller.name = (value);
@@ -93,7 +93,7 @@ class EditReportView extends StatefulWidget {
                   QTextField(
                     label: "University",
                     validator: Validator.required,
-                    helper: university,
+                    value: university,
                     hint: "Select University",
                     onChanged: (value) {
                       controller.university = (value);
@@ -105,7 +105,7 @@ class EditReportView extends StatefulWidget {
                   QTextField(
                     label: "Major",
                     validator: Validator.required,
-                    helper: major,
+                    value: major,
                     hint: "Type major name",
                     onChanged: (value) {
                       controller.major = (value);
@@ -117,25 +117,24 @@ class EditReportView extends StatefulWidget {
                   QTextField(
                     label: "Year of Study",
                     validator: Validator.required,
-                    helper: year,
+                    value: year,
                     hint: "Type year of study",
                     onChanged: (value) {
-                      controller.year = (value);
+                      if (value == "") {
+                        controller.year = data["major"];
+                      } else {
+                        controller.year = (value);
+                      }
                     },
                   ),
                   SizedBox(
                     height: 5,
                   ),
-                  TextFormField(
+                  QTextField(
                     maxLines: 3,
+                    label: "Description",
                     validator: Validator.required,
-                    decoration: InputDecoration(
-                        hintText: "Type description issue",
-                        labelText: "Description",
-                        labelStyle: TextStyle(color: Color(0xFF9B51E0)),
-                        isDense: true,
-                        alignLabelWithHint: true,
-                        helperText: description),
+                    value: description,
                     onChanged: (value) {
                       controller.description = (value);
                     },
@@ -170,11 +169,6 @@ class EditReportView extends StatefulWidget {
                       ),
                       onPressed: () {
                         controller.DoEditReport();
-                        bool isTrue = controller.cekEdit();
-                        print(isTrue);
-                        if (isTrue) {
-                          deleteReport(documentId);
-                        }
                       },
                       child: const Text("Edit Report"),
                     ),
@@ -187,7 +181,6 @@ class EditReportView extends StatefulWidget {
   }
 
   void deleteReport(String documentId) {
-    // Tambahkan logika penghapusan data berdasarkan documentId
     FirebaseFirestore.instance.collection("report").doc(documentId).delete();
   }
 

@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hyper_ui/core.dart';
 
@@ -36,83 +35,103 @@ class EditReportController extends State<EditReportView> {
   }
 
   DoEditReport() async {
-    if (reportName.isEmpty ||
-        name.isEmpty ||
-        university.isEmpty ||
-        major.isEmpty ||
-        year.isEmpty ||
-        description.isEmpty) {
-      showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: Text('Kesalahan'),
-            content: Text('Harap lengkapi semua data yang diperlukan.'),
-            actions: <Widget>[
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text('OK'),
-              ),
-            ],
-          );
-        },
-      );
-      cek = false;
-    } else {
-      cek = true;
-      await FirebaseFirestore.instance.collection("report").add({
-        "reportName": reportName,
-        "name": name,
-        "university": university,
-        "major": major,
-        "year": year,
-        "date": DateTime.now(),
-        "photo": photo,
-        "description": description,
-        "user": {
-          "uid": FirebaseAuth.instance.currentUser!.uid,
-          "name": FirebaseAuth.instance.currentUser!.displayName,
-          "email": FirebaseAuth.instance.currentUser!.email
-        }
-      });
-      showDialog<void>(
-        context: context,
-        barrierDismissible: true,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: const Text('Confirm'),
-            content: const SingleChildScrollView(
-              child: ListBody(
-                children: <Widget>[
-                  Text('Tambahkan Data'),
-                ],
-              ),
+    cek = true;
+    FirebaseFirestore.instance.collection('report').doc(view.documentId).get();
+    showDialog<void>(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Confirm'),
+          content: const SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('Edit Data'),
+              ],
             ),
-            actions: <Widget>[
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFF9B51E0),
-                ),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Text("No"),
+          ),
+          actions: <Widget>[
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color(0xFF9B51E0),
               ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red,
-                ),
-                onPressed: () {
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text("No"),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red,
+              ),
+              onPressed: () {
+                // Create an empty map to store the fields to update
+                Map<String, dynamic> updateData = {};
+
+                // Check each field and add it to the updateData map if it's not empty
+                if (reportName.isNotEmpty) {
+                  updateData["reportName"] = reportName;
+                }
+                if (name.isNotEmpty) {
+                  updateData["name"] = name;
+                }
+                if (university.isNotEmpty) {
+                  updateData["university"] = university;
+                }
+                if (major.isNotEmpty) {
+                  updateData["major"] = major;
+                }
+                if (year.isNotEmpty) {
+                  updateData["year"] = year;
+                }
+                if (description.isNotEmpty) {
+                  updateData["description"] = description;
+                }
+
+                // Check if there's any data to update
+                if (updateData.isNotEmpty) {
+                  // Update the document with the non-empty fields
+                  FirebaseFirestore.instance
+                      .collection("report")
+                      .doc(view.documentId)
+                      .update(updateData);
                   Navigator.pushReplacementNamed(context, '/homeReport');
-                },
-                child: Text("Yes"),
-              ),
-            ],
-          );
-        },
-      );
-    }
+                } else {
+                  // Show a message that no fields are updated
+                  showDialog<void>(
+                    context: context,
+                    barrierDismissible: true,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: const Text('Info'),
+                        content: const SingleChildScrollView(
+                          child: ListBody(
+                            children: <Widget>[
+                              Text('No fields are updated.'),
+                            ],
+                          ),
+                        ),
+                        actions: <Widget>[
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Color(0xFF9B51E0),
+                            ),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: Text("OK"),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                }
+              },
+              child: Text("Yes"),
+            ),
+          ],
+        );
+      },
+    );
   }
 }

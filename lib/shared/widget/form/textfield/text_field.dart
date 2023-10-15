@@ -81,6 +81,7 @@ class _QTextFieldState extends State<QTextField> {
         cursorColor: Color(0xFF9B51E0),
         validator: widget.validator,
         maxLength: widget.maxLength,
+        maxLines: widget.maxLines,
         obscureText: widget.isObscured,
         decoration: InputDecoration(
           focusedBorder: OutlineInputBorder(

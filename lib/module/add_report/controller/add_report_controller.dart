@@ -53,21 +53,6 @@ class AddReportController extends State<AddReportView> {
         },
       );
     } else {
-      await FirebaseFirestore.instance.collection("report").add({
-        "reportName": reportName,
-        "name": name,
-        "university": university,
-        "major": major,
-        "year": year,
-        "date": DateTime.now(),
-        "photo": photo,
-        "description": description,
-        "user": {
-          "uid": FirebaseAuth.instance.currentUser!.uid,
-          "name": FirebaseAuth.instance.currentUser!.displayName,
-          "email": FirebaseAuth.instance.currentUser!.email
-        }
-      });
       showDialog<void>(
         context: context,
         barrierDismissible: true,
@@ -77,7 +62,7 @@ class AddReportController extends State<AddReportView> {
             content: const SingleChildScrollView(
               child: ListBody(
                 children: <Widget>[
-                  Text('Tambahkan Data'),
+                  Text('Anda yakin untuk menambahkan data?'),
                 ],
               ),
             ),
@@ -96,6 +81,21 @@ class AddReportController extends State<AddReportView> {
                   backgroundColor: Colors.red,
                 ),
                 onPressed: () {
+                  FirebaseFirestore.instance.collection("report").add({
+                    "reportName": reportName,
+                    "name": name,
+                    "university": university,
+                    "major": major,
+                    "year": year,
+                    "date": DateTime.now(),
+                    "photo": photo,
+                    "description": description,
+                    "user": {
+                      "uid": FirebaseAuth.instance.currentUser!.uid,
+                      "name": FirebaseAuth.instance.currentUser!.displayName,
+                      "email": FirebaseAuth.instance.currentUser!.email
+                    }
+                  });
                   Navigator.pushReplacementNamed(context, '/homeReport');
                 },
                 child: Text("Yes"),
