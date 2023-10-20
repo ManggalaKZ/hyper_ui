@@ -34,7 +34,8 @@ class AddReportController extends State<AddReportView> {
         university.isEmpty ||
         major.isEmpty ||
         year.isEmpty ||
-        description.isEmpty) {
+        description.isEmpty ||
+        photo.isEmpty) {
       showDialog(
         context: context,
         builder: (context) {

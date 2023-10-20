@@ -311,22 +311,26 @@ class _YourWidgetState extends State<YourWidget> {
                               chartType: ChartType.bar,
                               data: [
                                 OrdinalData(
+                                    other: SizedBox(width: 10),
                                     domain: 'Primer',
                                     measure: data['data']['primer']),
                                 OrdinalData(
+                                    other: SizedBox(width: 10),
                                     domain: 'Sekunder',
                                     measure: data['data']['sekunder']),
                                 OrdinalData(
+                                    other: SizedBox(width: 10),
                                     domain: 'Tersier',
                                     measure: data['data']['tersier']),
                                 OrdinalData(
+                                    other: SizedBox(width: 10),
                                     domain: 'Pendidikan',
                                     measure: data['data']['pendidikan']),
                               ]),
                         ]),
                   ),
                 ),
-                SizedBox(width: 20),
+                SizedBox(height: 20),
                 Align(
                   alignment: Alignment.bottomRight,
                   child: InkWell(

@@ -103,7 +103,12 @@ class ReportDetailView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text("Reffering"),
-                            Text(name),
+                            SizedBox(width: 20),
+                            Flexible(
+                                child: Text(
+                              name,
+                              overflow: TextOverflow.visible,
+                            )),
                           ],
                         ),
                         SizedBox(
@@ -113,7 +118,14 @@ class ReportDetailView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text("University"),
-                            Text(university),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Flexible(
+                                child: Text(
+                              university,
+                              overflow: TextOverflow.visible,
+                            )),
                           ],
                         ),
                         SizedBox(
@@ -123,7 +135,14 @@ class ReportDetailView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text("Major"),
-                            Text(major),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Flexible(
+                                child: Text(
+                              major,
+                              overflow: TextOverflow.visible,
+                            )),
                           ],
                         ),
                         SizedBox(
@@ -134,16 +153,6 @@ class ReportDetailView extends StatelessWidget {
                           children: [
                             Text("Year of Study"),
                             Text(year),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("Amount"),
-                            Text("-"),
                           ],
                         ),
                         SizedBox(

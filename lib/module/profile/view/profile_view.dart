@@ -274,9 +274,15 @@ class ProfileView extends StatefulWidget {
                                         "KIP-K Number",
                                         style: TextStyle(fontSize: 17),
                                       ),
-                                      Text(
-                                        kip_number,
-                                        style: TextStyle(fontSize: 17),
+                                      SizedBox(
+                                        width: 20,
+                                      ),
+                                      Flexible(
+                                        child: Text(
+                                          kip_number,
+                                          overflow: TextOverflow.visible,
+                                          style: TextStyle(fontSize: 17),
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -291,9 +297,15 @@ class ProfileView extends StatefulWidget {
                                         "University",
                                         style: TextStyle(fontSize: 17),
                                       ),
-                                      Text(
-                                        university,
-                                        style: TextStyle(fontSize: 17),
+                                      SizedBox(
+                                        width: 20,
+                                      ),
+                                      Flexible(
+                                        child: Text(
+                                          university,
+                                          overflow: TextOverflow.visible,
+                                          style: TextStyle(fontSize: 17),
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -308,9 +320,15 @@ class ProfileView extends StatefulWidget {
                                         "Major",
                                         style: TextStyle(fontSize: 17),
                                       ),
-                                      Text(
-                                        major,
-                                        style: TextStyle(fontSize: 17),
+                                      SizedBox(
+                                        width: 20,
+                                      ),
+                                      Flexible(
+                                        child: Text(
+                                          major,
+                                          overflow: TextOverflow.visible,
+                                          style: TextStyle(fontSize: 17),
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -325,9 +343,15 @@ class ProfileView extends StatefulWidget {
                                         "Address",
                                         style: TextStyle(fontSize: 17),
                                       ),
-                                      Text(
-                                        address,
-                                        style: TextStyle(fontSize: 17),
+                                      SizedBox(
+                                        width: 20,
+                                      ),
+                                      Flexible(
+                                        child: Text(
+                                          address,
+                                          overflow: TextOverflow.visible,
+                                          style: TextStyle(fontSize: 17),
+                                        ),
                                       ),
                                     ],
                                   ),

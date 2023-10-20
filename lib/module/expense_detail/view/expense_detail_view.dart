@@ -103,7 +103,14 @@ class ExpenseDetailPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text("Expense Name"),
-                            Text("$name"),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Flexible(
+                                child: Text(
+                              "$name",
+                              overflow: TextOverflow.visible,
+                            )),
                           ],
                         ),
                         SizedBox(
@@ -126,7 +133,14 @@ class ExpenseDetailPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text("Item Name"),
-                            Text("$itemName"),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Flexible(
+                                child: Text(
+                              "$itemName",
+                              overflow: TextOverflow.visible,
+                            )),
                           ],
                         ),
                         SizedBox(

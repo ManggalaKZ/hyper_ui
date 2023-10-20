@@ -65,6 +65,7 @@ class _QRadioFieldState extends State<QRadioField> {
               hintText: widget.hint,
             ),
             child: ListView.builder(
+              physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemCount: items.length,
               itemBuilder: (context, index) {

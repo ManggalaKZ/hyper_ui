@@ -36,7 +36,6 @@ class AddExpenseController extends State<AddExpensePageView> {
     } else if (date == null) {
       _showErrorDialog('Harap masukkan tanggal.');
     } else {
-      // Check if the same expense name exists in Firestore
       User? currentUser = FirebaseAuth.instance.currentUser;
       final expenseQuery = await FirebaseFirestore.instance
           .collection("expense")
@@ -48,23 +47,6 @@ class AddExpenseController extends State<AddExpensePageView> {
       if (expenseQuery.docs.isNotEmpty) {
         _showErrorDialog('Pengeluaran dengan nama yang sama sudah ada.');
       } else {
-        String month = DateFormat('MMMM').format(date!);
-        await FirebaseFirestore.instance.collection("expense").add({
-          "name": nama,
-          "category": category,
-          "datebaru": date,
-          "date": Timestamp.now(),
-          "bulan": month,
-          "itemName": itemName,
-          "amount": amount,
-          "photo": photo,
-          "user": {
-            "uid": _auth.currentUser!.uid,
-            "name": _auth.currentUser!.displayName,
-            "email": _auth.currentUser!.email
-          }
-        });
-
         _showConfirmationDialog();
       }
     }
@@ -119,6 +101,22 @@ class AddExpenseController extends State<AddExpensePageView> {
                 backgroundColor: Colors.red,
               ),
               onPressed: () {
+                String month = DateFormat('MMMM').format(date!);
+                FirebaseFirestore.instance.collection("expense").add({
+                  "name": nama,
+                  "category": category,
+                  "datebaru": date,
+                  "date": Timestamp.now(),
+                  "bulan": month,
+                  "itemName": itemName,
+                  "amount": amount,
+                  "photo": photo,
+                  "user": {
+                    "uid": _auth.currentUser!.uid,
+                    "name": _auth.currentUser!.displayName,
+                    "email": _auth.currentUser!.email
+                  }
+                });
                 Navigator.pushReplacementNamed(context, '/homeExpense');
               },
               child: Text("Yes"),

@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -63,7 +62,10 @@ class _QImagePickerState extends State<QImagePicker> {
       source: ImageSource.gallery,
       imageQuality: 40,
     );
-    String? filePath = image?.path;
+    if (image == null) {
+      return null;
+    }
+    String? filePath = image.path;
     if (filePath == null) return null;
     return filePath;
   }
@@ -123,12 +125,12 @@ class _QImagePickerState extends State<QImagePicker> {
     loading = true;
     setState(() {});
 
-    if (!kIsWeb && Platform.isWindows) {
-      filePath = await getFileMultiplePlatform();
-    } else {
-      filePath = await getFileAndroidIosAndWeb();
+    filePath = await getFileAndroidIosAndWeb();
+    if (filePath == null) {
+      loading = false;
+      setState(() {});
+      return;
     }
-    if (filePath == null) return;
 
     imageUrl = await uploadFile(filePath);
     loading = false;

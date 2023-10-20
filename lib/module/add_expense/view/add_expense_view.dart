@@ -48,31 +48,33 @@ class AddExpensePageView extends StatefulWidget {
             SizedBox(
               height: 15,
             ),
-            QRadioField(
-              label: "Category",
-              validator: Validator.atLeastOneitem,
-              items: [
-                {
-                  "label": "Primer",
-                  "value": "primer",
+            Container(
+              child: QRadioField(
+                label: "Category",
+                validator: Validator.atLeastOneitem,
+                items: [
+                  {
+                    "label": "Primer",
+                    "value": "primer",
+                  },
+                  {
+                    "label": "Sekunder",
+                    "value": "sekunder",
+                  },
+                  {
+                    "label": "Tersier",
+                    "value": "tersier",
+                  },
+                  {
+                    "label": "Pendidikan",
+                    "value": "pendidikan",
+                  }
+                ],
+                onChanged: (value, label) {
+                  print(value);
+                  controller.category = (value);
                 },
-                {
-                  "label": "Sekunder",
-                  "value": "sekunder",
-                },
-                {
-                  "label": "Tersier",
-                  "value": "tersier",
-                },
-                {
-                  "label": "Pendidikan",
-                  "value": "pendidikan",
-                }
-              ],
-              onChanged: (value, label) {
-                print(value);
-                controller.category = (value);
-              },
+              ),
             ),
             SizedBox(
               height: 15,
